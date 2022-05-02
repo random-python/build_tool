@@ -1,0 +1,56 @@
+#
+# pep-0621 generic config
+#
+
+[project]
+
+name = "build_tool"
+version = "220502.3"
+
+requires-python = ">=3.10"
+
+dependencies = [
+    "xattr",
+	"boto3",
+	"filehash",
+	"pyAesCrypt",
+]
+
+authors = [
+  { name = "Andrei Pozolotin", email = "do-not-bother@never.com" },
+]
+
+[build-system]
+
+build-backend = "setuptools.build_meta"
+
+requires = [
+    "sh",
+    "build",
+    "wheel",
+    "setuptools", 
+]
+
+[project.urls]
+
+homepage = "https://github.com/random-python/build_tool"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+
+[project.scripts]
+amazon_package_download = "build_tool.amazon_main:package_download"
+amazon_package_upload   = "build_tool.amazon_main:package_upload"
+
+[tool.setuptools]
+
+# activate MANIFEST.in
+include-package-data = true
+
+# declare project packages
+packages = [ "build_tool" ]
+
+# define package locations
+package-dir = { build_tool = "src/main/build_tool" }
